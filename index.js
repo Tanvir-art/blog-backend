@@ -27,16 +27,34 @@ async function run() {
     await client.connect();
     const database = client.db("blogDb");
     const colction = database.collection("blog");
+
+
+    app.get('/recent-blogs', async (req, res) => {
+      
+        const cursor = colction.find().sort({ dataAndTime: -1 }).limit(6);
+        const result = await cursor.toArray();
+        res.send(result);
+      
+    });
+    
+
+
     app.get('/blogs', async(req, res)=>{
       const cursor = colction.find();
       const result = await cursor.toArray();
       res.send(result);
     })
+
     app.post('/add', async(req, res)=>{
       const blog = req.body;
       const result = await colction.insertOne(blog);
       res.send(result);
     })
+
+
+
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
