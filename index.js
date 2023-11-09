@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.crzw9rp.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`;
+const uri = `mongodb+srv://blogger:oEaQW7x8v632r0LP@cluster0.crzw9rp.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
