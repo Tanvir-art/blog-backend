@@ -31,11 +31,9 @@ async function run() {
 
 
     app.get('/recent-blogs', async (req, res) => {
-      
         const cursor = colction.find().sort({ dataAndTime: -1 }).limit(6);
         const result = await cursor.toArray();
-        res.send(result);
-      
+        res.send(result);  
     });
     
 
@@ -74,6 +72,21 @@ async function run() {
       const result =  await wishlistCollection.deleteOne(query);
       res.send(result);
     })
+
+    app.get('/wishlist/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const result = await wishlistCollection.findOne(query)
+      res.send(result);  
+  })
+
+    // app.patch('/wishlist/:id', async(req, res)=>{
+    //   const id = req.params.id;
+    //   const filter = {_id: new ObjectId(id)};
+    //   const update = req.body;
+  
+    //   res.send(result);
+    // })
  
 
 
