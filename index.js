@@ -27,6 +27,7 @@ async function run() {
     await client.connect();
     const database = client.db("blogDb");
     const colction = database.collection("blog");
+    const wishlistCollection = database.collection("wishlist");
 
 
     app.get('/recent-blogs', async (req, res) => {
@@ -48,6 +49,12 @@ async function run() {
     app.post('/add', async(req, res)=>{
       const blog = req.body;
       const result = await colction.insertOne(blog);
+      res.send(result);
+    })
+
+    app.post('/wishlist', async(req, res)=>{
+      const singleWislist = req.body;
+      const result = await wishlistCollection.insertOne(singleWislist);
       res.send(result);
     })
 
