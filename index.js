@@ -28,6 +28,7 @@ async function run() {
     const database = client.db("blogDb");
     const colction = database.collection("blog");
     const wishlistCollection = database.collection("wishlist");
+    const newsltterCollection = database.collection("news");
 
 
     app.get('/recent-blogs', async (req, res) => {
@@ -80,13 +81,11 @@ async function run() {
       res.send(result);  
   })
 
-    // app.patch('/wishlist/:id', async(req, res)=>{
-    //   const id = req.params.id;
-    //   const filter = {_id: new ObjectId(id)};
-    //   const update = req.body;
-  
-    //   res.send(result);
-    // })
+  app.post('/subscribe', async(req, res)=>{
+    const subscribe = req.body;
+    const result = await newsltterCollection.insertOne(subscribe);
+    res.send(result);
+  })
  
 
 
@@ -104,7 +103,7 @@ run().catch(console.dir);
 
 
 
-
+ 
 
 app.get('/', (req, res)=>{
     res.send(`blog server is running`);
