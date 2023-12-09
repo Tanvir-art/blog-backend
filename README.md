@@ -6,7 +6,7 @@ This is the backend for the BLog Website project. It is built using Express.js f
   -- For using this you need to setup your own database password and username
 ## Live Demo
 
-Explore the live demo: [Online Shop](https://blog-d83ea.web.app/)
+Explore the live demo: [Blog Website](https://blog-d83ea.web.app/)
 
 ## Prerequisites
 
